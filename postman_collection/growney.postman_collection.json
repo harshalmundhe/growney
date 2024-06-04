@@ -6,178 +6,1294 @@
 	},
 	"item": [
 		{
-			"name": "Register User",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"test8 test\",\r\n    \"email\":\"test8@test.com\",\r\n    \"password\":\"123456\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"test8 test\",\r\n    \"email\":\"test8@test.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/register",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"register"
-					]
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"test7@test.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"test7@test.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/forgot-pass",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"forgot-pass"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"123456\",\r\n    \"token\":\"dGVzdDdAdGVzdC5jb21fMjAyNC0wNS0yNCAxNTo1MjozMQ==\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/reset-pass",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reset-pass"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/user-profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user-profile"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Login User",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"test7@test.com\",\r\n    \"password\":\"123456\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Unusual Activity",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/unusual-activity/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"unusual-activity",
+								"4"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/login",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"login"
-					]
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "p3",
+									"type": "text"
+								},
+								{
+									"key": "activity",
+									"value": "some activivty 3",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/unusual-activity/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"unusual-activity",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								},
+								{
+									"key": "project",
+									"value": "p1",
+									"type": "default"
+								},
+								{
+									"key": "activity",
+									"value": "some activivty 1",
+									"type": "default"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "default",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/unusual-activity",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"unusual-activity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/unusual-activity",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"unusual-activity"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Forgot Password",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"test7@test.com\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Eco System",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/eco-system/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"eco-system",
+								"4"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/forgot-pass",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"forgot-pass"
-					]
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "p3",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "name2",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/eco-system/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"eco-system",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								},
+								{
+									"key": "project",
+									"value": "p1",
+									"type": "default"
+								},
+								{
+									"key": "name",
+									"value": "some name",
+									"type": "default"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "default",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/eco-system",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"eco-system"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/eco-system",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"eco-system"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Reset Password",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"password\":\"123456\",\r\n    \"token\":\"dGVzdDdAdGVzdC5jb21fMjAyNC0wNS0yNCAxNTo1MjozMQ==\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Killer Projects",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/killer-project/8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"killer-project",
+								"8"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/reset-pass",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"reset-pass"
-					]
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "p2",
+									"type": "text"
+								},
+								{
+									"key": "activity",
+									"value": "some activivty 3",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/killer-project/8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"killer-project",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								},
+								{
+									"key": "project",
+									"value": "p1",
+									"type": "default"
+								},
+								{
+									"key": "activity",
+									"value": "some activivty 1",
+									"type": "default"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "default",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/killer-project",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"killer-project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/killler-project",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"killler-project"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Logout",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{auth}}",
-						"type": "default"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "New Listing",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/new-listing/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-listing",
+								"2"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/logout",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"logout"
-					]
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "name1",
+									"type": "text"
+								},
+								{
+									"key": "created_on",
+									"value": "2024-06-02",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "category",
+									"type": "text"
+								},
+								{
+									"key": "network",
+									"value": "network",
+									"type": "text"
+								},
+								{
+									"key": "max_supply",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								},
+								{
+									"key": "investors[]",
+									"type": "file",
+									"src": [
+										"/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463461_social_chrome_media_network.png",
+										"/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463462_dribbblr_media_network_social.png",
+										"/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463464_social_media_explorer_network.png"
+									]
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/new-listing/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-listing",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								},
+								{
+									"key": "name",
+									"value": "name",
+									"type": "default"
+								},
+								{
+									"key": "created_on",
+									"value": "2024-06-02",
+									"type": "default"
+								},
+								{
+									"key": "category",
+									"value": "category",
+									"type": "default"
+								},
+								{
+									"key": "network",
+									"value": "network",
+									"type": "default"
+								},
+								{
+									"key": "max_supply",
+									"value": "100",
+									"type": "default"
+								},
+								{
+									"key": "investors[]",
+									"type": "file",
+									"src": [
+										"/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463458_social_application_media_network.png",
+										"/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463459_media_social_arrow_network.png",
+										"/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463460_behance_social_network_media.png"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/new-listing",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-listing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/new-listing?nolimit=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-listing"
+							],
+							"query": [
+								{
+									"key": "nolimit",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "User Profile",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{auth}}",
-						"type": "default"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "New Project",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/new-project/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-project",
+								"2"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/user-profile",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"user-profile"
-					]
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "name1",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "category",
+									"type": "text"
+								},
+								{
+									"key": "total_raise",
+									"value": "total_raise",
+									"type": "text"
+								},
+								{
+									"key": "round",
+									"value": "round",
+									"type": "text"
+								},
+								{
+									"key": "investors",
+									"value": "investors",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/new-project/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-project",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								},
+								{
+									"key": "project",
+									"value": "name",
+									"type": "default"
+								},
+								{
+									"key": "total_raise",
+									"value": "1000",
+									"type": "default"
+								},
+								{
+									"key": "category",
+									"value": "category",
+									"type": "default"
+								},
+								{
+									"key": "round",
+									"value": "12",
+									"type": "default"
+								},
+								{
+									"key": "investors",
+									"value": "test1,test2",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/new-project",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/new-project",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-project"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "IDO IEO",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/ido-ieo/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ido-ieo",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "name1",
+									"type": "text"
+								},
+								{
+									"key": "backed_by",
+									"value": "category",
+									"type": "text"
+								},
+								{
+									"key": "partners",
+									"value": "total_raise",
+									"type": "text"
+								},
+								{
+									"key": "coin_token_sale_partner",
+									"value": "round",
+									"type": "text"
+								},
+								{
+									"key": "audits",
+									"value": "investors",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/ido-ieo/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ido-ieo",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								},
+								{
+									"key": "project",
+									"value": "name",
+									"type": "default"
+								},
+								{
+									"key": "backed_by",
+									"value": "1000",
+									"type": "default"
+								},
+								{
+									"key": "partners",
+									"value": "category",
+									"type": "default"
+								},
+								{
+									"key": "coin_token_sale_partner",
+									"value": "12",
+									"type": "default"
+								},
+								{
+									"key": "audits",
+									"value": "test1,test2",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/ido-ieo",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ido-ieo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/ido-ieo",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ido-ieo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Funding Round",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/funding-round/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"funding-round",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "name1",
+									"type": "text"
+								},
+								{
+									"key": "created_on",
+									"value": "2024-02-22",
+									"type": "text"
+								},
+								{
+									"key": "rounds",
+									"value": "11",
+									"type": "text"
+								},
+								{
+									"key": "partners",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "investors",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								},
+								{
+									"key": "raised",
+									"value": "test",
+									"type": "default"
+								},
+								{
+									"key": "category",
+									"value": "test",
+									"type": "default"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/funding-round/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"funding-round",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								},
+								{
+									"key": "project",
+									"value": "name",
+									"type": "default"
+								},
+								{
+									"key": "created_on",
+									"value": "2024-06-04",
+									"type": "default"
+								},
+								{
+									"key": "rounds",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "partners",
+									"value": "partner1",
+									"type": "default"
+								},
+								{
+									"key": "investors",
+									"value": "12",
+									"type": "default"
+								},
+								{
+									"key": "raised",
+									"value": "test",
+									"type": "default"
+								},
+								{
+									"key": "category",
+									"value": "test",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/funding-round",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"funding-round"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/funding-round",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"funding-round"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [

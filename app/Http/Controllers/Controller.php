@@ -64,5 +64,30 @@ class Controller extends BaseController
         return response()->json($ret, 200);
     }
 
+    public function moveFileToStorage($fileObj, $dir) {
+        $extension = $fileObj->extension();
+
+
+        $path = public_path() . DIRECTORY_SEPARATOR  . 'uploads' . DIRECTORY_SEPARATOR  . $dir;
+        if(!is_dir($path)) {
+            mkdir($path, 0755, true);
+        }
+        $imageName = md5(rand(10000,99999). "_" . time())  . "." . $extension;
+
+        $fileObj->move($path, $imageName);
+
+        return $imageName;
+    }
+
+    public function getPagination($data) {
+        return [
+            'count' => $data->count(),
+            'currentPage' => $data->currentPage(),
+            'lastPage' => $data->lastPage(),
+            'perPage' => $data->perPage(),
+        ];
+
+    }
+
 
 }
