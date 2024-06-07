@@ -148,6 +148,38 @@ return [
             'raised' => 'required|string',
             'category' => 'required|string',
         ],
+        'airdrop_index' => [
+            'page' => 'numeric|min:1',
+            'nolimit' => 'numeric|in:1',
+        ],
+        'airdrop_post' => [
+            'logo' => 'required|mimes:jpeg,jpg,png,gif|max:10000',
+            'heading' => 'required|string',
+            'sub_heading' => 'required|string',
+        ],
+        'airdrop_put' => [
+            'logo' => 'mimes:jpeg,jpg,png,gif|max:10000',
+            'heading' => 'required|string',
+            'sub_heading' => 'required|string',
+        ],
+        'hotnews_index' => [
+            'page' => 'numeric|min:1',
+            'nolimit' => 'numeric|in:1',
+        ],
+        'hotnews_post' => [
+            'logo' => 'required|mimes:jpeg,jpg,png,gif|max:10000',
+            'heading' => 'required|string',
+            'sub_heading' => 'required|string',
+        ],
+        'hotnews_put' => [
+            'logo' => 'mimes:jpeg,jpg,png,gif|max:10000',
+            'heading' => 'required|string',
+            'sub_heading' => 'required|string',
+        ],
+        'wishlist_post' => [
+            'item_id' => 'required|numeric',
+            'table_name' => 'required|string|in:air_drop,eco_system,funding_round,hot_news,ido_ieo,killer_project,new_listing,new_project,unusual_activity',
+        ]
     ],
     'validation_messages' => [
         'required' => 'The :attribute field is required.',
@@ -158,8 +190,19 @@ return [
         'max' => 'The :attribute field should be :max  kb',
         'numeric' => 'The :attribute field should be a number',
         'min' => 'The :attribute field min value should be :min',
-        'in' => 'The :attribute field min value should be :values',
+        'in' => 'The :attribute field value should be in :values',
         'date' => 'The :attribute field should be date',
         'array' => 'The :attribute field should be array',
+    ],
+    'upload_dir' => [
+        'air_drop' => 'airdrop',
+        'eco_system' => 'ecosystem',
+        'funding_round' => 'fundinground',
+        'hot_news' => 'hotnews',
+        'ido_ieo' => 'idoieo',
+        'killer_project' => 'killerproject',
+        'new_listing' => 'newlisting',
+        'new_project' => 'newproject',
+        'unusual_activity' => 'unusualactivity'
     ]
 ];

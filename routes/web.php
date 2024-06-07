@@ -62,10 +62,24 @@ Route::group(['prefix' => 'api'], function ($router) {
     Route::put('funding-round/{id}', 'FundingRoundController@put');
     Route::delete('funding-round/{id}', 'FundingRoundController@delete');
 
+    Route::get('air-drop', 'AirDropController@index');
+    Route::post('air-drop', 'AirDropController@post');
+    Route::put('air-drop/{id}', 'AirDropController@put');
+    Route::delete('air-drop/{id}', 'AirDropController@delete');
+
+    Route::get('hot-news', 'HotNewsController@index');
+    Route::post('hot-news', 'HotNewsController@post');
+    Route::put('hot-news/{id}', 'HotNewsController@put');
+    Route::delete('hot-news/{id}', 'HotNewsController@delete');
+
     Route::group(['middleware' => 'auth:api'], function($router){
         Route::post('logout', 'AuthController@logout');
         Route::post('refresh', 'AuthController@refresh');
         Route::post('user-profile', 'AuthController@me');
+
+        Route::get('wishlist', 'WishlistController@index');
+        Route::post('wishlist', 'WishlistController@post');
+        Route::delete('wishlist/{id}', 'WishlistController@delete');
     });
 });
 
