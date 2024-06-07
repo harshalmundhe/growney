@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2024 at 03:04 PM
+-- Generation Time: Jun 07, 2024 at 10:11 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `growney`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `air_drop`
+--
+
+CREATE TABLE `air_drop` (
+  `id` int(11) NOT NULL,
+  `logo` varchar(255) DEFAULT NULL,
+  `heading` varchar(255) NOT NULL,
+  `sub_heading` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `air_drop`
+--
+
+INSERT INTO `air_drop` (`id`, `logo`, `heading`, `sub_heading`, `created_at`, `updated_at`) VALUES
+(1, 'c33272e8e4dd82e301408d59b0e5b0cd.png', 'p1', 'some activivty 1', '2024-06-07 11:52:28', '2024-06-07 11:52:28');
 
 -- --------------------------------------------------------
 
@@ -87,6 +109,29 @@ CREATE TABLE `funding_round` (
 INSERT INTO `funding_round` (`id`, `logo`, `project`, `created_on`, `rounds`, `partners`, `investors`, `raised`, `category`, `created_at`, `updated_at`) VALUES
 (1, '76d73e831773f9a4d724e4d54056e97d.png', 'name', '2024-06-04', 1, 'partner1', 12, 'test', 'test', '2024-06-04 18:29:46', '2024-06-04 18:29:46'),
 (3, '3d2dd09ec7a2ff6473ba72346f575957.png', 'name', '2024-06-04', 1, 'partner1', 12, 'test', 'test', '2024-06-04 18:30:12', '2024-06-04 18:30:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hot_news`
+--
+
+CREATE TABLE `hot_news` (
+  `id` int(11) NOT NULL,
+  `logo` varchar(255) DEFAULT NULL,
+  `heading` varchar(255) NOT NULL,
+  `sub_heading` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `hot_news`
+--
+
+INSERT INTO `hot_news` (`id`, `logo`, `heading`, `sub_heading`, `created_at`, `updated_at`) VALUES
+(1, '960706ea0136e21cbf20a74320532535.png', 'p1', 'some activivty 1', '2024-06-07 11:55:20', '2024-06-07 11:55:20'),
+(2, '0d557a531140bf06db29b26809b22560.png', 'p2', 'some activivty 3', '2024-06-07 11:55:37', '2024-06-07 11:56:08');
 
 -- --------------------------------------------------------
 
@@ -306,9 +351,38 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (7, 'test7 test', 'test7@test.com', NULL, '$2y$12$VferjxddfGG/w0r/s9VRLeDrqwknBLdahPWbNfau.aCijLJr3INkq', NULL, '2024-05-23 23:46:13', '2024-05-24 15:44:56'),
 (8, 'test8 test', 'test8@test.com', NULL, '$2y$12$P1SU.jZmm/a7yWsXp0nS6Ozo/gd5M4B4bWsMYTTJw/rvjL7Cus4xq', NULL, '2024-05-24 07:12:04', '2024-05-24 07:12:04');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_wishlist`
+--
+
+CREATE TABLE `user_wishlist` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `table_name` varchar(255) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_wishlist`
+--
+
+INSERT INTO `user_wishlist` (`id`, `user_id`, `item_id`, `table_name`, `created_at`, `updated_at`) VALUES
+(1, 6, 1, 'new_listing', '2024-06-07 12:48:22', '2024-06-07 12:48:22'),
+(8, 6, 3, 'funding_round', '2024-06-07 13:31:34', '2024-06-07 13:31:34');
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `air_drop`
+--
+ALTER TABLE `air_drop`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `eco_system`
@@ -327,6 +401,12 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `funding_round`
 --
 ALTER TABLE `funding_round`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hot_news`
+--
+ALTER TABLE `hot_news`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -387,8 +467,21 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `user_wishlist`
+--
+ALTER TABLE `user_wishlist`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_record` (`user_id`,`item_id`,`table_name`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `air_drop`
+--
+ALTER TABLE `air_drop`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `eco_system`
@@ -407,6 +500,12 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `funding_round`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `hot_news`
+--
+ALTER TABLE `hot_news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ido_ieo`
@@ -455,6 +554,12 @@ ALTER TABLE `unusual_activity`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `user_wishlist`
+--
+ALTER TABLE `user_wishlist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
