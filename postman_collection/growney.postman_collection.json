@@ -322,6 +322,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/unusual-activity/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"unusual-activity",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -463,6 +482,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/eco-system/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"eco-system",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -593,13 +631,32 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/api/killler-project",
+							"raw": "{{url}}/api/killer-project",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
-								"killler-project"
+								"killer-project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/killer-project/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"killer-project",
+								"5"
 							]
 						}
 					},
@@ -741,6 +798,25 @@
 							"path": [
 								"api",
 								"air-drop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/air-drop/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"air-drop",
+								"1"
 							]
 						}
 					},
@@ -998,6 +1074,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/hot-news/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"hot-news",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1181,6 +1276,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/new-listing/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-listing",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1336,6 +1450,25 @@
 							"path": [
 								"api",
 								"new-project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/new-project/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-project",
+								"1"
 							]
 						}
 					},
@@ -1499,6 +1632,25 @@
 							"path": [
 								"api",
 								"ido-ieo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/ido-ieo/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ido-ieo",
+								"1"
 							]
 						}
 					},
@@ -1682,6 +1834,25 @@
 							"path": [
 								"api",
 								"funding-round"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/funding-round/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"funding-round",
+								"1"
 							]
 						}
 					},

@@ -42,6 +42,15 @@ class KillerProjectController extends Controller
         }
         return $this->sendFailedResponse('KillerProject listing failed');
     } 
+    public function view(Request $request, $id) {
+        try {
+            $killerproject = KillerProject::findOrFail($id)->toArray();
+            $killerproject['logo'] = asset("/images/".self::UPLOAD_DIR."/". $killerproject['logo']);
+            return $this->sendSuccessResponse('KillerProject view successfully', $killerproject);
+        } catch (\Exception $e) {
+            return $this->sendFailedResponse('KillerProject view failed');
+        }
+    }
 
     public function post(Request $request) {
         $validated = $this->validateRequest($request->all(), 'killerproject_post');

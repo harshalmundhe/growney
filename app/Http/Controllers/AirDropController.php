@@ -43,6 +43,16 @@ class AirDropController extends Controller
         return $this->sendFailedResponse('AirDrop listing failed');
     } 
 
+    public function view(Request $request, $id) {
+        try {
+            $airdrop = AirDrop::findOrFail($id)->toArray();
+            $airdrop['logo'] = asset("/images/".self::UPLOAD_DIR."/". $airdrop['logo']);
+            return $this->sendSuccessResponse('AirDrop view successfully', $airdrop);
+        } catch (\Exception $e) {
+            return $this->sendFailedResponse('AirDrop view failed');
+        }
+    }
+
     public function post(Request $request) {
         $validated = $this->validateRequest($request->all(), 'airdrop_post');
 

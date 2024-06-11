@@ -16,28 +16,38 @@ class FundingRoundController extends Controller
             return $validated;
         }
         if($request->has('nolimit')) {
-            $ideieo = FundingRound::get()->toArray();
+            $fundinground = FundingRound::get()->toArray();
 
-            if(!empty($ideieo)) {
-                foreach($ideieo as $v) {
+            if(!empty($fundinground)) {
+                foreach($fundinground as $v) {
                     $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
                     $data['collection'][] = $v;
                 }
                 return $this->sendSuccessResponse('FundingRound listed successfully', $data);
             }
         } else {
-            $ideieo = FundingRound::paginate(10);
-            if(!empty($ideieo)) {
-                foreach($ideieo->items() as $v) {
+            $fundinground = FundingRound::paginate(10);
+            if(!empty($fundinground)) {
+                foreach($fundinground->items() as $v) {
                     $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
                     $data['collection'][] = $v;
                 }
-                $data['pagination'] = $this->getPagination($ideieo);
+                $data['pagination'] = $this->getPagination($fundinground);
                 return $this->sendSuccessResponse('FundingRound listed successfully', $data);
             }
         }
-        return $this->sendFailedResponse('FundingRound ideieo failed');
+        return $this->sendFailedResponse('FundingRound fundinground failed');
     } 
+
+    public function view(Request $request, $id) {
+        try {
+            $fundinground = FundingRound::findOrFail($id)->toArray();
+            $fundinground['logo'] = asset("/images/".self::UPLOAD_DIR."/". $fundinground['logo']);
+            return $this->sendSuccessResponse('FundingRound view successfully', $fundinground);
+        } catch (\Exception $e) {
+            return $this->sendFailedResponse('FundingRound view failed');
+        }
+    }
 
     public function post(Request $request) {
         
@@ -50,7 +60,7 @@ class FundingRoundController extends Controller
         $investors = [];
         $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
 
-        $ideieo = FundingRound::create([
+        $fundinground = FundingRound::create([
             'logo' => $filename,
             'project' => $request->project,
             'created_on' => $request->created_on,
@@ -61,10 +71,10 @@ class FundingRoundController extends Controller
             'category' => $request->category,
         ]);
 
-        if(!empty($ideieo)) {
+        if(!empty($fundinground)) {
             $investorPath = [];
-            $ideieo['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ideieo['logo']);
-            return $this->sendSuccessResponse('FundingRound created successfully', ['ideieo' => $ideieo]);
+            $fundinground['logo'] = asset("/images/".self::UPLOAD_DIR."/". $fundinground['logo']);
+            return $this->sendSuccessResponse('FundingRound created successfully', ['fundinground' => $fundinground]);
         }
         return $this->sendFailedResponse('FundingRound creation failed');
     }
@@ -92,23 +102,23 @@ class FundingRoundController extends Controller
         }
         
 
-        $ideieo = FundingRound::findOrFail($id)
+        $fundinground = FundingRound::findOrFail($id)
             ->update($updates);
         
-        if(!empty($ideieo)) {
-            $ideieo = FundingRound::find($id)->toArray();
+        if(!empty($fundinground)) {
+            $fundinground = FundingRound::find($id)->toArray();
             $investorPath = [];
-            $ideieo['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ideieo['logo']);
+            $fundinground['logo'] = asset("/images/".self::UPLOAD_DIR."/". $fundinground['logo']);
             
-            return $this->sendSuccessResponse('FundingRound updated successfully', ['ideieo' => $ideieo]);
+            return $this->sendSuccessResponse('FundingRound updated successfully', ['fundinground' => $fundinground]);
         }
         return $this->sendFailedResponse('FundingRound updation failed');
     }
 
     public function delete(Request $request, $id) {
-        $ideieo = FundingRound::findOrFail($id)
+        $fundinground = FundingRound::findOrFail($id)
             ->delete();
-        if(!empty($ideieo)) {
+        if(!empty($fundinground)) {
             return $this->sendSuccessResponse('FundingRound deleted successfully', [1]);
         }
         return $this->sendFailedResponse('FundingRound deletion failed');

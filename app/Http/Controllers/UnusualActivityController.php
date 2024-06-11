@@ -43,6 +43,16 @@ class UnusualActivityController extends Controller
         return $this->sendFailedResponse('Activty listing failed');
     } 
 
+    public function view(Request $request, $id) {
+        try {
+            $activity = UnusualActivity::findOrFail($id)->toArray();
+            $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
+            return $this->sendSuccessResponse('Activty view successfully', $activity);
+        } catch (\Exception $e) {
+            return $this->sendFailedResponse('Activty view failed');
+        }
+    }
+
     public function post(Request $request) {
         $validated = $this->validateRequest($request->all(), 'unusualactivity_post');
 

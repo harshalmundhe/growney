@@ -36,12 +36,18 @@ class NewProjectController extends Controller
             }
         }
         
-        if(!empty($activity)) {
-            echo $activity->items();exit;
-            
-        }
         return $this->sendFailedResponse('Project listing failed');
     } 
+
+    public function view(Request $request, $id) {
+        try {
+            $activity = NewProject::findOrFail($id)->toArray();
+            $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
+            return $this->sendSuccessResponse('Project view successfully', $activity);
+        } catch (\Exception $e) {
+            return $this->sendFailedResponse('Project view failed');
+        }
+    }
 
     public function post(Request $request) {
         $validated = $this->validateRequest($request->all(), 'newproject_post');

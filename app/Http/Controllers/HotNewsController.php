@@ -43,6 +43,16 @@ class HotNewsController extends Controller
         return $this->sendFailedResponse('HotNews listing failed');
     } 
 
+    public function view(Request $request, $id) {
+        try {
+            $hotnews = HotNews::findOrFail($id)->toArray();
+            $hotnews['logo'] = asset("/images/".self::UPLOAD_DIR."/". $hotnews['logo']);
+            return $this->sendSuccessResponse('HotNews view successfully', $hotnews);
+        } catch (\Exception $e) {
+            return $this->sendFailedResponse('HotNews view failed');
+        }
+    }
+
     public function post(Request $request) {
         $validated = $this->validateRequest($request->all(), 'hotnews_post');
 

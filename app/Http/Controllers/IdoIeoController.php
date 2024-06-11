@@ -39,6 +39,16 @@ class IdoIeoController extends Controller
         return $this->sendFailedResponse('IdoIeo ideieo failed');
     } 
 
+    public function view(Request $request, $id) {
+        try {
+            $ideieo = IdoIeo::findOrFail($id)->toArray();
+            $ideieo['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ideieo['logo']);
+            return $this->sendSuccessResponse('IdoIeo view successfully', $ideieo);
+        } catch (\Exception $e) {
+            return $this->sendFailedResponse('IdoIeo view failed');
+        }
+    }
+
     public function post(Request $request) {
         
         $validated = $this->validateRequest($request->all(), 'idoieo_post');

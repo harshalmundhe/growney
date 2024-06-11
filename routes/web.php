@@ -27,47 +27,55 @@ Route::group(['prefix' => 'api'], function ($router) {
 
 
     Route::get('unusual-activity', 'UnusualActivityController@index');
+    Route::get('unusual-activity/{id}', 'UnusualActivityController@view');
     Route::post('unusual-activity', 'UnusualActivityController@post');
     Route::put('unusual-activity/{id}', 'UnusualActivityController@put');
     Route::delete('unusual-activity/{id}', 'UnusualActivityController@delete');
     
     Route::get('new-listing', 'NewListingController@index');
+    Route::get('new-listing/{id}', 'NewListingController@view');
     Route::post('new-listing', 'NewListingController@post');
     Route::put('new-listing/{id}', 'NewListingController@put');
     Route::delete('new-listing/{id}', 'NewListingController@delete');
 
     Route::get('new-project', 'NewProjectController@index');
+    Route::get('new-project/{id}', 'NewProjectController@view');
     Route::post('new-project', 'NewProjectController@post');
     Route::put('new-project/{id}', 'NewProjectController@put');
     Route::delete('new-project/{id}', 'NewProjectController@delete');
 
     Route::get('killer-project', 'KillerProjectController@index');
+    Route::get('killer-project/{id}', 'KillerProjectController@view');
     Route::post('killer-project', 'KillerProjectController@post');
     Route::put('killer-project/{id}', 'KillerProjectController@put');
     Route::delete('killer-project/{id}', 'KillerProjectController@delete');
 
-
     Route::get('eco-system', 'EcoSystemController@index');
+    Route::get('eco-system/{id}', 'EcoSystemController@view');
     Route::post('eco-system', 'EcoSystemController@post');
     Route::put('eco-system/{id}', 'EcoSystemController@put');
     Route::delete('eco-system/{id}', 'EcoSystemController@delete');
 
     Route::get('ido-ieo', 'IdoIeoController@index');
+    Route::get('ido-ieo/{id}', 'IdoIeoController@view');
     Route::post('ido-ieo', 'IdoIeoController@post');
     Route::put('ido-ieo/{id}', 'IdoIeoController@put');
     Route::delete('ido-ieo/{id}', 'IdoIeoController@delete');
 
     Route::get('funding-round', 'FundingRoundController@index');
+    Route::get('funding-round/{id}', 'FundingRoundController@view');
     Route::post('funding-round', 'FundingRoundController@post');
     Route::put('funding-round/{id}', 'FundingRoundController@put');
     Route::delete('funding-round/{id}', 'FundingRoundController@delete');
 
     Route::get('air-drop', 'AirDropController@index');
+    Route::get('air-drop/{id}', 'AirDropController@view');
     Route::post('air-drop', 'AirDropController@post');
     Route::put('air-drop/{id}', 'AirDropController@put');
     Route::delete('air-drop/{id}', 'AirDropController@delete');
 
     Route::get('hot-news', 'HotNewsController@index');
+    Route::get('hot-news/{id}', 'HotNewsController@view');
     Route::post('hot-news', 'HotNewsController@post');
     Route::put('hot-news/{id}', 'HotNewsController@put');
     Route::delete('hot-news/{id}', 'HotNewsController@delete');

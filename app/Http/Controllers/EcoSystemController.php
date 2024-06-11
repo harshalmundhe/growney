@@ -43,6 +43,16 @@ class EcoSystemController extends Controller
         return $this->sendFailedResponse('EcoSystem listing failed');
     } 
 
+    public function view(Request $request, $id) {
+        try {
+            $ecosystem = EcoSystem::findOrFail($id)->toArray();
+            $ecosystem['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ecosystem['logo']);
+            return $this->sendSuccessResponse('EcoSystem view successfully', $ecosystem);
+        } catch (\Exception $e) {
+            return $this->sendFailedResponse('EcoSystem view failed');
+        }
+    }
+
     public function post(Request $request) {
         $validated = $this->validateRequest($request->all(), 'ecosystem_post');
 

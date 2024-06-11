@@ -32,7 +32,7 @@ class NewListingController extends Controller
                     $v['investors'] = $investorPath;
                     $data['collection'][] = $v;
                 }
-                return $this->sendSuccessResponse('Activty listed successfully', $data);
+                return $this->sendSuccessResponse('NewListing listed successfully', $data);
             }
         } else {
             $listing = NewListing::paginate(10);
@@ -50,11 +50,29 @@ class NewListingController extends Controller
                     $data['collection'][] = $v;
                 }
                 $data['pagination'] = $this->getPagination($listing);
-                return $this->sendSuccessResponse('Activty listed successfully', $data);
+                return $this->sendSuccessResponse('NewListing listed successfully', $data);
             }
         }
-        return $this->sendFailedResponse('Activty listing failed');
+        return $this->sendFailedResponse('NewListing listing failed');
     } 
+
+    public function view(Request $request, $id) {
+        try {
+            $listing = NewListing::findOrFail($id)->toArray();
+            $listing['logo'] = asset("/images/".self::UPLOAD_DIR."/". $listing['logo']);
+            $investors = json_decode($listing['investors'], true);
+            $investorPath = [];
+            if(!empty($investors)) {
+                foreach($investors as $investor) {
+                    $investorPath[] = asset("/images/".self::UPLOAD_DIR."/". $investor);
+                }
+            }
+            $listing['investors'] = $investorPath;
+            return $this->sendSuccessResponse('NewListing view successfully', $listing);
+        } catch (\Exception $e) {
+            return $this->sendFailedResponse('NewListing view failed');
+        }
+    }
 
     public function post(Request $request) {
         
@@ -93,9 +111,9 @@ class NewListingController extends Controller
             }
             
             $listing['investors'] = $investorPath;
-            return $this->sendSuccessResponse('Activty created successfully', ['listing' => $listing]);
+            return $this->sendSuccessResponse('NewListing created successfully', ['listing' => $listing]);
         }
-        return $this->sendFailedResponse('Activty creation failed');
+        return $this->sendFailedResponse('NewListing creation failed');
     }
 
     public function put(Request $request, $id) {
@@ -140,17 +158,17 @@ class NewListingController extends Controller
             
             $listing['investors'] = $investorPath;
             
-            return $this->sendSuccessResponse('Activty updated successfully', ['listing' => $listing]);
+            return $this->sendSuccessResponse('NewListing updated successfully', ['listing' => $listing]);
         }
-        return $this->sendFailedResponse('Activty updation failed');
+        return $this->sendFailedResponse('NewListing updation failed');
     }
 
     public function delete(Request $request, $id) {
         $listing = NewListing::findOrFail($id)
             ->delete();
         if(!empty($listing)) {
-            return $this->sendSuccessResponse('Activty deleted successfully', [1]);
+            return $this->sendSuccessResponse('NewListing deleted successfully', [1]);
         }
-        return $this->sendFailedResponse('Activty deletion failed');
+        return $this->sendFailedResponse('NewListing deletion failed');
     }
 }
