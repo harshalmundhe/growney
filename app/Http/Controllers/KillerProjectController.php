@@ -64,7 +64,7 @@ class KillerProjectController extends Controller
         $killerproject = KillerProject::create([
             'logo' => $filename,
             'project' => $request->project,
-            'activities' => $request->killerproject
+            'activities' => $request->activity
         ]);
 
         if(!empty($killerproject)) {
@@ -84,7 +84,7 @@ class KillerProjectController extends Controller
 
         $updates = [
             'project' => $request->project,
-            'activities' => $request->killerproject
+            'activities' => $request->activity
         ];
         if($request->has('logo')) {
             $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
