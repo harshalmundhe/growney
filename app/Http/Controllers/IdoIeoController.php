@@ -20,7 +20,9 @@ class IdoIeoController extends Controller
 
             if(!empty($ideieo)) {
                 foreach($ideieo as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 return $this->sendSuccessResponse('IdoIeo listed successfully', $data);
@@ -29,7 +31,9 @@ class IdoIeoController extends Controller
             $ideieo = IdoIeo::paginate(10);
             if(!empty($ideieo)) {
                 foreach($ideieo->items() as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 $data['pagination'] = $this->getPagination($ideieo);
@@ -42,7 +46,9 @@ class IdoIeoController extends Controller
     public function view(Request $request, $id) {
         try {
             $ideieo = IdoIeo::findOrFail($id)->toArray();
-            $ideieo['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ideieo['logo']);
+            if(!empty($ideieo['logo'])) {
+                $ideieo['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ideieo['logo']);
+            }
             return $this->sendSuccessResponse('IdoIeo view successfully', $ideieo);
         } catch (\Exception $e) {
             return $this->sendFailedResponse('IdoIeo view failed');
@@ -57,21 +63,23 @@ class IdoIeoController extends Controller
             return $validated;
         }
 
-        $investors = [];
-        $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        if($request->has('logo')) {
+            $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        }
 
         $ideieo = IdoIeo::create([
-            'logo' => $filename,
-            'project' => $request->project,
-            'backed_by' => $request->backed_by,
-            'partners' => $request->partners,
-            'coin_token_sale_partner' => $request->coin_token_sale_partner,
-            'audits' => $request->audits,
+            'logo' => $filename ?? '',
+            'project' => $request->project  ?? '',
+            'backed_by' => $request->backed_by  ?? '',
+            'partners' => $request->partners  ?? '',
+            'coin_token_sale_partner' => $request->coin_token_sale_partner  ?? '',
+            'audits' => $request->audits  ?? '',
         ]);
 
         if(!empty($ideieo)) {
-            $investorPath = [];
-            $ideieo['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ideieo['logo']);
+            if(!empty($ideieo['logo'])) {
+                $ideieo['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ideieo['logo']);
+            }
             return $this->sendSuccessResponse('IdoIeo created successfully', ['ideieo' => $ideieo]);
         }
         return $this->sendFailedResponse('IdoIeo creation failed');
@@ -86,11 +94,11 @@ class IdoIeoController extends Controller
         }
 
         $updates = [
-            'project' => $request->project,
-            'backed_by' => $request->backed_by,
-            'partners' => $request->partners,
-            'coin_token_sale_partner' => $request->coin_token_sale_partner,
-            'audits' => $request->audits,
+            'project' => $request->project ?? '',
+            'backed_by' => $request->backed_by ?? '',
+            'partners' => $request->partners ?? '',
+            'coin_token_sale_partner' => $request->coin_token_sale_partner ?? '',
+            'audits' => $request->audits ?? '',
         ];
         if($request->has('logo')) {
             $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
@@ -103,8 +111,9 @@ class IdoIeoController extends Controller
         
         if(!empty($ideieo)) {
             $ideieo = IdoIeo::find($id)->toArray();
-            $investorPath = [];
-            $ideieo['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ideieo['logo']);
+            if(!empty($ideieo['logo'])) {
+                $ideieo['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ideieo['logo']);
+            }
             
             return $this->sendSuccessResponse('IdoIeo updated successfully', ['ideieo' => $ideieo]);
         }

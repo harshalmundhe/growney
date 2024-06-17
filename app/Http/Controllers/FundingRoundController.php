@@ -20,7 +20,9 @@ class FundingRoundController extends Controller
 
             if(!empty($fundinground)) {
                 foreach($fundinground as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 return $this->sendSuccessResponse('FundingRound listed successfully', $data);
@@ -29,7 +31,9 @@ class FundingRoundController extends Controller
             $fundinground = FundingRound::paginate(10);
             if(!empty($fundinground)) {
                 foreach($fundinground->items() as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 $data['pagination'] = $this->getPagination($fundinground);
@@ -42,7 +46,9 @@ class FundingRoundController extends Controller
     public function view(Request $request, $id) {
         try {
             $fundinground = FundingRound::findOrFail($id)->toArray();
-            $fundinground['logo'] = asset("/images/".self::UPLOAD_DIR."/". $fundinground['logo']);
+            if(!empty($fundinground['logo'])) {
+                $fundinground['logo'] = asset("/images/".self::UPLOAD_DIR."/". $fundinground['logo']);
+            }
             return $this->sendSuccessResponse('FundingRound view successfully', $fundinground);
         } catch (\Exception $e) {
             return $this->sendFailedResponse('FundingRound view failed');
@@ -57,23 +63,25 @@ class FundingRoundController extends Controller
             return $validated;
         }
 
-        $investors = [];
-        $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        if($request->has('logo')) {
+            $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        }
 
         $fundinground = FundingRound::create([
-            'logo' => $filename,
-            'project' => $request->project,
-            'created_on' => $request->created_on,
-            'rounds' => $request->rounds,
-            'partners' => $request->partners,
-            'investors' => $request->investors,
-            'raised' => $request->raised,
-            'category' => $request->category,
+            'logo' => $filename ?? '',
+            'project' => $request->project ?? '',
+            'created_on' => $request->created_on ?? '',
+            'rounds' => $request->rounds ?? '',
+            'partners' => $request->partners ?? '',
+            'investors' => $request->investors ?? '',
+            'raised' => $request->raised ?? '',
+            'category' => $request->category ?? '',
         ]);
 
         if(!empty($fundinground)) {
-            $investorPath = [];
-            $fundinground['logo'] = asset("/images/".self::UPLOAD_DIR."/". $fundinground['logo']);
+            if(!empty($fundinground['logo'])) {
+                $fundinground['logo'] = asset("/images/".self::UPLOAD_DIR."/". $fundinground['logo']);
+            }
             return $this->sendSuccessResponse('FundingRound created successfully', ['fundinground' => $fundinground]);
         }
         return $this->sendFailedResponse('FundingRound creation failed');
@@ -88,13 +96,13 @@ class FundingRoundController extends Controller
         }
 
         $updates = [
-            'project' => $request->project,
-            'created_on' => $request->created_on,
-            'rounds' => $request->rounds,
-            'partners' => $request->partners,
-            'investors' => $request->investors,
-            'raised' => $request->raised,
-            'category' => $request->category,
+            'project' => $request->project ?? '',
+            'created_on' => $request->created_on ?? '',
+            'rounds' => $request->rounds ?? '',
+            'partners' => $request->partners ?? '',
+            'investors' => $request->investors ?? '',
+            'raised' => $request->raised ?? '',
+            'category' => $request->category ?? '',
         ];
         if($request->has('logo')) {
             $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
@@ -107,8 +115,9 @@ class FundingRoundController extends Controller
         
         if(!empty($fundinground)) {
             $fundinground = FundingRound::find($id)->toArray();
-            $investorPath = [];
-            $fundinground['logo'] = asset("/images/".self::UPLOAD_DIR."/". $fundinground['logo']);
+            if(!empty($fundinground['logo'])) {
+                $fundinground['logo'] = asset("/images/".self::UPLOAD_DIR."/". $fundinground['logo']);
+            }
             
             return $this->sendSuccessResponse('FundingRound updated successfully', ['fundinground' => $fundinground]);
         }

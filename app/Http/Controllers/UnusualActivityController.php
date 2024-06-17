@@ -19,7 +19,9 @@ class UnusualActivityController extends Controller
             $activity = UnusualActivity::get()->toArray();
             if(!empty($activity)) {
                 foreach($activity as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 return $this->sendSuccessResponse('Activty listed successfully', $data);
@@ -28,7 +30,9 @@ class UnusualActivityController extends Controller
             $activity = UnusualActivity::paginate(10);
             if(!empty($activity)) {
                 foreach($activity->items() as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 $data['pagination'] = $this->getPagination($activity);
@@ -46,7 +50,9 @@ class UnusualActivityController extends Controller
     public function view(Request $request, $id) {
         try {
             $activity = UnusualActivity::findOrFail($id)->toArray();
-            $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
+            if(!empty($activity['logo'])) {
+                $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
+            }
             return $this->sendSuccessResponse('Activty view successfully', $activity);
         } catch (\Exception $e) {
             return $this->sendFailedResponse('Activty view failed');
@@ -59,17 +65,20 @@ class UnusualActivityController extends Controller
         if(!empty($validated)) {
             return $validated;
         }
-
-        $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        if($request->has('logo')) {
+            $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        }
 
         $activity = UnusualActivity::create([
-            'logo' => $filename,
-            'project' => $request->project,
-            'activities' => $request->activity
+            'logo' => $filename ?? '',
+            'project' => $request->project ?? '',
+            'activities' => $request->activity ?? ''
         ]);
 
         if(!empty($activity)) {
-            $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
+            if(!empty($activity['logo'])) {
+                $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
+            }
             return $this->sendSuccessResponse('Activty created successfully', ['activity' => $activity]);
         }
         return $this->sendFailedResponse('Activty creation failed');
@@ -84,8 +93,8 @@ class UnusualActivityController extends Controller
         }
 
         $updates = [
-            'project' => $request->project,
-            'activities' => $request->activity
+            'project' => $request->project  ?? '',
+            'activities' => $request->activity  ?? ''
         ];
         if($request->has('logo')) {
             $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
@@ -98,8 +107,9 @@ class UnusualActivityController extends Controller
 
         if(!empty($activity)) {
             $activity = UnusualActivity::find($id)->toArray();
-            $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity
-            ['logo']);
+            if(!empty($activity['logo'])) {
+                $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
+            }
             return $this->sendSuccessResponse('Activty updated successfully', ['activity' => $activity]);
         }
         return $this->sendFailedResponse('Activty updation failed');

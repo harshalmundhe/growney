@@ -19,7 +19,9 @@ class NewProjectController extends Controller
             $activity = NewProject::get()->toArray();
             if(!empty($activity)) {
                 foreach($activity as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 return $this->sendSuccessResponse('Project listed successfully', $data);
@@ -28,7 +30,9 @@ class NewProjectController extends Controller
             $activity = NewProject::paginate(10);
             if(!empty($activity)) {
                 foreach($activity->items() as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 $data['pagination'] = $this->getPagination($activity);
@@ -42,7 +46,9 @@ class NewProjectController extends Controller
     public function view(Request $request, $id) {
         try {
             $activity = NewProject::findOrFail($id)->toArray();
-            $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
+            if(!empty($activity['logo'])) {
+                $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
+            }
             return $this->sendSuccessResponse('Project view successfully', $activity);
         } catch (\Exception $e) {
             return $this->sendFailedResponse('Project view failed');
@@ -55,20 +61,23 @@ class NewProjectController extends Controller
         if(!empty($validated)) {
             return $validated;
         }
-
-        $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        if($request->has('logo')) {
+            $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        }
 
         $activity = NewProject::create([
-            'logo' => $filename,
-            'project' => $request->project,
-            'category' => $request->category,
-            'total_raise' => $request->total_raise,
-            'round' => $request->round,
-            'investors' => $request->investors,
+            'logo' => $filename ?? '',
+            'project' => $request->project  ?? '',
+            'category' => $request->category  ?? '',
+            'total_raise' => $request->total_raise  ?? '',
+            'round' => $request->round  ?? '',
+            'investors' => $request->investors  ?? '',
         ]);
 
         if(!empty($activity)) {
-            $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
+            if(!empty($activity['logo'])) {
+                $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
+            }
             return $this->sendSuccessResponse('Project created successfully', ['activity' => $activity]);
         }
         return $this->sendFailedResponse('Project creation failed');
@@ -83,11 +92,11 @@ class NewProjectController extends Controller
         }
 
         $updates = [
-            'project' => $request->project,
-            'category' => $request->category,
-            'total_raise' => $request->total_raise,
-            'round' => $request->round,
-            'investors' => $request->investors,
+            'project' => $request->project ?? '',
+            'category' => $request->category ?? '',
+            'total_raise' => $request->total_raise ?? '',
+            'round' => $request->round ?? '',
+            'investors' => $request->investors ?? '',
         ];
         if($request->has('logo')) {
             $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
@@ -100,8 +109,9 @@ class NewProjectController extends Controller
 
         if(!empty($activity)) {
             $activity = NewProject::find($id)->toArray();
-            $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity
-            ['logo']);
+            if(!empty($activity['logo'])) {
+                $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
+            }
             return $this->sendSuccessResponse('Project updated successfully', ['activity' => $activity]);
         }
         return $this->sendFailedResponse('Project updation failed');

@@ -19,7 +19,9 @@ class KillerProjectController extends Controller
             $killerproject = KillerProject::get()->toArray();
             if(!empty($killerproject)) {
                 foreach($killerproject as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 return $this->sendSuccessResponse('KillerProject listed successfully', $data);
@@ -28,24 +30,23 @@ class KillerProjectController extends Controller
             $killerproject = KillerProject::paginate(10);
             if(!empty($killerproject)) {
                 foreach($killerproject->items() as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 $data['pagination'] = $this->getPagination($killerproject);
                 return $this->sendSuccessResponse('KillerProject listed successfully', $data);
             }
         }
-        
-        if(!empty($killerproject)) {
-            echo $killerproject->items();exit;
-            
-        }
         return $this->sendFailedResponse('KillerProject listing failed');
     } 
     public function view(Request $request, $id) {
         try {
             $killerproject = KillerProject::findOrFail($id)->toArray();
-            $killerproject['logo'] = asset("/images/".self::UPLOAD_DIR."/". $killerproject['logo']);
+            if(!empty($killerproject['logo'])) {
+                $killerproject['logo'] = asset("/images/".self::UPLOAD_DIR."/". $killerproject['logo']);
+            }
             return $this->sendSuccessResponse('KillerProject view successfully', $killerproject);
         } catch (\Exception $e) {
             return $this->sendFailedResponse('KillerProject view failed');
@@ -58,17 +59,20 @@ class KillerProjectController extends Controller
         if(!empty($validated)) {
             return $validated;
         }
-
-        $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        if($request->has('logo')) {
+            $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        }
 
         $killerproject = KillerProject::create([
-            'logo' => $filename,
-            'project' => $request->project,
-            'activities' => $request->activity
+            'logo' => $filename ?? '',
+            'project' => $request->project  ?? '',
+            'activities' => $request->activity  ?? ''
         ]);
 
         if(!empty($killerproject)) {
-            $killerproject['logo'] = asset("/images/".self::UPLOAD_DIR."/". $killerproject['logo']);
+            if(!empty($killerproject['logo'])) {
+                $killerproject['logo'] = asset("/images/".self::UPLOAD_DIR."/". $killerproject['logo']);
+            }
             return $this->sendSuccessResponse('KillerProject created successfully', ['killerproject' => $killerproject]);
         }
         return $this->sendFailedResponse('KillerProject creation failed');
@@ -83,8 +87,8 @@ class KillerProjectController extends Controller
         }
 
         $updates = [
-            'project' => $request->project,
-            'activities' => $request->activity
+            'project' => $request->project  ?? '',
+            'activities' => $request->activity  ?? ''
         ];
         if($request->has('logo')) {
             $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
@@ -97,8 +101,9 @@ class KillerProjectController extends Controller
 
         if(!empty($killerproject)) {
             $killerproject = KillerProject::find($id)->toArray();
-            $killerproject['logo'] = asset("/images/".self::UPLOAD_DIR."/". $killerproject
-            ['logo']);
+            if(!empty($killerproject['logo'])) {
+                $killerproject['logo'] = asset("/images/".self::UPLOAD_DIR."/". $killerproject['logo']);
+            }
             return $this->sendSuccessResponse('KillerProject updated successfully', ['killerproject' => $killerproject]);
         }
         return $this->sendFailedResponse('KillerProject updation failed');

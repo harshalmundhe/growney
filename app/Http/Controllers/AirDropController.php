@@ -19,7 +19,9 @@ class AirDropController extends Controller
             $airdrop = AirDrop::get()->toArray();
             if(!empty($airdrop)) {
                 foreach($airdrop as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 return $this->sendSuccessResponse('AirDrop listed successfully', $data);
@@ -28,17 +30,14 @@ class AirDropController extends Controller
             $airdrop = AirDrop::paginate(10);
             if(!empty($airdrop)) {
                 foreach($airdrop->items() as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 $data['pagination'] = $this->getPagination($airdrop);
                 return $this->sendSuccessResponse('AirDrop listed successfully', $data);
             }
-        }
-        
-        if(!empty($airdrop)) {
-            echo $airdrop->items();exit;
-            
         }
         return $this->sendFailedResponse('AirDrop listing failed');
     } 
@@ -46,7 +45,9 @@ class AirDropController extends Controller
     public function view(Request $request, $id) {
         try {
             $airdrop = AirDrop::findOrFail($id)->toArray();
-            $airdrop['logo'] = asset("/images/".self::UPLOAD_DIR."/". $airdrop['logo']);
+            if(!empty($airdrop['logo'])) {
+                $airdrop['logo'] = asset("/images/".self::UPLOAD_DIR."/". $airdrop['logo']);
+            }
             return $this->sendSuccessResponse('AirDrop view successfully', $airdrop);
         } catch (\Exception $e) {
             return $this->sendFailedResponse('AirDrop view failed');
@@ -60,16 +61,20 @@ class AirDropController extends Controller
             return $validated;
         }
 
-        $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        if($request->has('logo')) {
+            $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        }
 
         $airdrop = AirDrop::create([
-            'logo' => $filename,
-            'heading' => $request->heading,
-            'sub_heading' => $request->sub_heading
+            'logo' => $filename ?? '',
+            'heading' => $request->heading  ?? '',
+            'sub_heading' => $request->sub_heading  ?? ''
         ]);
 
         if(!empty($airdrop)) {
-            $airdrop['logo'] = asset("/images/".self::UPLOAD_DIR."/". $airdrop['logo']);
+            if(!empty($airdrop['logo'])) {
+                $airdrop['logo'] = asset("/images/".self::UPLOAD_DIR."/". $airdrop['logo']);
+            }
             return $this->sendSuccessResponse('AirDrop created successfully', ['airdrop' => $airdrop]);
         }
         return $this->sendFailedResponse('AirDrop creation failed');
@@ -84,8 +89,8 @@ class AirDropController extends Controller
         }
 
         $updates = [
-            'heading' => $request->heading,
-            'sub_heading' => $request->sub_heading
+            'heading' => $request->heading ?? '',
+            'sub_heading' => $request->sub_heading ?? ''
         ];
         if($request->has('logo')) {
             $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
@@ -98,8 +103,10 @@ class AirDropController extends Controller
 
         if(!empty($airdrop)) {
             $airdrop = AirDrop::find($id)->toArray();
-            $airdrop['logo'] = asset("/images/".self::UPLOAD_DIR."/". $airdrop
-            ['logo']);
+
+            if(!empty($airdrop['logo'])) {
+                $airdrop['logo'] = asset("/images/".self::UPLOAD_DIR."/". $airdrop['logo']);
+            }
             return $this->sendSuccessResponse('AirDrop updated successfully', ['airdrop' => $airdrop]);
         }
         return $this->sendFailedResponse('AirDrop updation failed');

@@ -19,7 +19,9 @@ class HotNewsController extends Controller
             $hotnews = HotNews::get()->toArray();
             if(!empty($hotnews)) {
                 foreach($hotnews as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 return $this->sendSuccessResponse('HotNews listed successfully', $data);
@@ -28,7 +30,9 @@ class HotNewsController extends Controller
             $hotnews = HotNews::paginate(10);
             if(!empty($hotnews)) {
                 foreach($hotnews->items() as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 $data['pagination'] = $this->getPagination($hotnews);
@@ -46,7 +50,9 @@ class HotNewsController extends Controller
     public function view(Request $request, $id) {
         try {
             $hotnews = HotNews::findOrFail($id)->toArray();
-            $hotnews['logo'] = asset("/images/".self::UPLOAD_DIR."/". $hotnews['logo']);
+            if(!empty($hotnews['logo'])) {
+                $hotnews['logo'] = asset("/images/".self::UPLOAD_DIR."/". $hotnews['logo']);
+            }
             return $this->sendSuccessResponse('HotNews view successfully', $hotnews);
         } catch (\Exception $e) {
             return $this->sendFailedResponse('HotNews view failed');
@@ -60,16 +66,20 @@ class HotNewsController extends Controller
             return $validated;
         }
 
-        $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        if($request->has('logo')) {
+            $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        }
 
         $hotnews = HotNews::create([
-            'logo' => $filename,
-            'heading' => $request->heading,
-            'sub_heading' => $request->sub_heading
+            'logo' => $filename ?? '',
+            'heading' => $request->heading  ?? '',
+            'sub_heading' => $request->sub_heading ?? ''
         ]);
 
         if(!empty($hotnews)) {
-            $hotnews['logo'] = asset("/images/".self::UPLOAD_DIR."/". $hotnews['logo']);
+            if(!empty($hotnews['logo'])) {
+                $hotnews['logo'] = asset("/images/".self::UPLOAD_DIR."/". $hotnews['logo']);
+            }
             return $this->sendSuccessResponse('HotNews created successfully', ['hotnews' => $hotnews]);
         }
         return $this->sendFailedResponse('HotNews creation failed');
@@ -84,8 +94,8 @@ class HotNewsController extends Controller
         }
 
         $updates = [
-            'heading' => $request->heading,
-            'sub_heading' => $request->sub_heading
+            'heading' => $request->heading  ?? '',
+            'sub_heading' => $request->sub_heading ?? ''
         ];
         if($request->has('logo')) {
             $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
@@ -98,8 +108,9 @@ class HotNewsController extends Controller
 
         if(!empty($hotnews)) {
             $hotnews = HotNews::find($id)->toArray();
-            $hotnews['logo'] = asset("/images/".self::UPLOAD_DIR."/". $hotnews
-            ['logo']);
+            if(!empty($hotnews['logo'])) {
+                $hotnews['logo'] = asset("/images/".self::UPLOAD_DIR."/". $hotnews['logo']);
+            }
             return $this->sendSuccessResponse('HotNews updated successfully', ['hotnews' => $hotnews]);
         }
         return $this->sendFailedResponse('HotNews updation failed');

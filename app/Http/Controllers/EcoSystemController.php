@@ -19,7 +19,9 @@ class EcoSystemController extends Controller
             $ecosystem = EcoSystem::get()->toArray();
             if(!empty($ecosystem)) {
                 foreach($ecosystem as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 return $this->sendSuccessResponse('EcoSystem listed successfully', $data);
@@ -28,7 +30,9 @@ class EcoSystemController extends Controller
             $ecosystem = EcoSystem::paginate(10);
             if(!empty($ecosystem)) {
                 foreach($ecosystem->items() as $v) {
-                    $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    if(!empty($v['logo'])) {
+                        $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
+                    }
                     $data['collection'][] = $v;
                 }
                 $data['pagination'] = $this->getPagination($ecosystem);
@@ -46,7 +50,9 @@ class EcoSystemController extends Controller
     public function view(Request $request, $id) {
         try {
             $ecosystem = EcoSystem::findOrFail($id)->toArray();
-            $ecosystem['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ecosystem['logo']);
+            if(!empty($ecosystem['logo'])) {
+                $ecosystem['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ecosystem['logo']);
+            }
             return $this->sendSuccessResponse('EcoSystem view successfully', $ecosystem);
         } catch (\Exception $e) {
             return $this->sendFailedResponse('EcoSystem view failed');
@@ -60,16 +66,20 @@ class EcoSystemController extends Controller
             return $validated;
         }
 
-        $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        if($request->has('logo')) {
+            $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        }
 
         $ecosystem = EcoSystem::create([
-            'logo' => $filename,
-            'project' => $request->project,
-            'name' => $request->name
+            'logo' => $filename ?? '',
+            'project' => $request->project ?? '',
+            'name' => $request->name ?? ''
         ]);
 
         if(!empty($ecosystem)) {
-            $ecosystem['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ecosystem['logo']);
+            if(!empty($ecosystem['logo'])) {
+                $ecosystem['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ecosystem['logo']);
+            }
             return $this->sendSuccessResponse('EcoSystem created successfully', ['ecosystem' => $ecosystem]);
         }
         return $this->sendFailedResponse('EcoSystem creation failed');
@@ -84,8 +94,8 @@ class EcoSystemController extends Controller
         }
 
         $updates = [
-            'project' => $request->project,
-            'name' => $request->name
+            'project' => $request->project ?? '',
+            'name' => $request->name ?? ''
         ];
         if($request->has('logo')) {
             $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
@@ -98,8 +108,9 @@ class EcoSystemController extends Controller
 
         if(!empty($ecosystem)) {
             $ecosystem = EcoSystem::find($id)->toArray();
-            $ecosystem['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ecosystem
-            ['logo']);
+            if(!empty($ecosystem['logo'])) {
+                $ecosystem['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ecosystem['logo']);
+            }
             return $this->sendSuccessResponse('EcoSystem updated successfully', ['ecosystem' => $ecosystem]);
         }
         return $this->sendFailedResponse('EcoSystem updation failed');
