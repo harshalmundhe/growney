@@ -89,8 +89,11 @@ class NewListingController extends Controller
         }
 
         $investors = [];
-        $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
-        if($request->has('investors')) {
+        
+        if($request->has('logo')) {
+            $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
+        }
+        if($request->has('investors')) {    
             foreach ($request->file('investors') as $file) {
                 $investors[] = $this->moveFileToStorage($file, self::UPLOAD_DIR);
             }
