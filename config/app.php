@@ -44,7 +44,7 @@ return [
             'investors.*' => 'mimes:jpeg,jpg,png,gif|max:10000',
             'category' => 'string',
             'network' => 'string',
-            'max_supply' => 'numeric|min:1',
+            'max_supply' => 'string',
         ],
         'newlisting_put' => [
             'logo' => 'mimes:jpeg,jpg,png,gif|max:10000',
@@ -54,7 +54,7 @@ return [
             'investors.*' => 'mimes:jpeg,jpg,png,gif|max:10000',
             'category' => 'string',
             'network' => 'string',
-            'max_supply' => 'numeric|min:1',
+            'max_supply' => 'string',
         ],
         'newproject_index' => [
             'page' => 'numeric|min:1',
