@@ -22,6 +22,7 @@ class UnusualActivityController extends Controller
                     if(!empty($v['logo'])) {
                         $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
                     }
+                    $v['share'] = @json_decode($v['share'], true);
                     $data['collection'][] = $v;
                 }
                 return $this->sendSuccessResponse('Activty listed successfully', $data);
@@ -33,6 +34,7 @@ class UnusualActivityController extends Controller
                     if(!empty($v['logo'])) {
                         $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
                     }
+                    $v['share'] = @json_decode($v['share'], true);
                     $data['collection'][] = $v;
                 }
                 $data['pagination'] = $this->getPagination($activity);
@@ -53,6 +55,7 @@ class UnusualActivityController extends Controller
             if(!empty($activity['logo'])) {
                 $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
             }
+            $activity['share'] = @json_decode($activity['share'], true);
             return $this->sendSuccessResponse('Activty view successfully', $activity);
         } catch (\Exception $e) {
             return $this->sendFailedResponse('Activty view failed');
@@ -72,13 +75,15 @@ class UnusualActivityController extends Controller
         $activity = UnusualActivity::create([
             'logo' => $filename ?? '',
             'project' => $request->project ?? '',
-            'activities' => $request->activity ?? ''
+            'activities' => $request->activity ?? '',
+            'share' => json_encode($request->share ?? [])
         ]);
 
         if(!empty($activity)) {
             if(!empty($activity['logo'])) {
                 $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
             }
+            $activity['share'] = @json_decode($activity['share'], true);
             return $this->sendSuccessResponse('Activty created successfully', ['activity' => $activity]);
         }
         return $this->sendFailedResponse('Activty creation failed');
@@ -94,7 +99,8 @@ class UnusualActivityController extends Controller
 
         $updates = [
             'project' => $request->project  ?? '',
-            'activities' => $request->activity  ?? ''
+            'activities' => $request->activity  ?? '',
+            'share' => json_encode($request->share ?? [])
         ];
         if($request->has('logo')) {
             $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
@@ -110,6 +116,7 @@ class UnusualActivityController extends Controller
             if(!empty($activity['logo'])) {
                 $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
             }
+            $activity['share'] = @json_decode($activity['share'], true);
             return $this->sendSuccessResponse('Activty updated successfully', ['activity' => $activity]);
         }
         return $this->sendFailedResponse('Activty updation failed');

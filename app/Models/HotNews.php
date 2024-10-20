@@ -10,7 +10,8 @@ class HotNews extends Model
     protected $fillable = [
         'logo',
         'heading',
-        'sub_heading'
+        'sub_heading',
+        'share'
     ];
 
 }

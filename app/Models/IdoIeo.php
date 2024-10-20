@@ -14,6 +14,7 @@ class IdoIeo extends Model
         'partners',
         'coin_token_sale_partner',
         'audits',
+        'share'
     ];
 
 }

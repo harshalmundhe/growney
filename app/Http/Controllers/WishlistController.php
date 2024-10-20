@@ -27,6 +27,7 @@ class WishlistController extends Controller
             if(!empty($res)) {
                 $res['wishlist_id'] = $value['id'];
                 $res['logo'] = asset("/images/".$upload_dir."/". $res['logo']);
+                $res['share'] = @json_decode($res['share'], true);
                 if(!empty($res['investors'])) {
                     $investors = @json_decode($v['investors'], true);
                     if(!empty($investors)) {

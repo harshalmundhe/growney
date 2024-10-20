@@ -54,12 +54,28 @@ class AuthController extends Controller
             return $validated;
         }
 
+        $reffered_by = null;
+        if(!empty($request->reffer_code)) {
+            $reffered_by = User::where('reffer_code', $request->reffer_code)->first();
+            if(!empty($reffered_by)) {
+                $reffered_by = $reffered_by->id;
+            }
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'reffer_code' => User::generateRefferCode(),
+            'reffered_by' => $reffered_by ?? null
         ]);
+
+        $user->increment('credits',env('REFFERED_CREDIT', 0));
+
+        if(!empty($reffered_by)) {
+            User::find($reffered_by)->increment('credits',env('REFFERER_CREDIT', 0));
+        }
+
 
 
         if (! $token = Auth::login($user)) {

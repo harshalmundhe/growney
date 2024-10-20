@@ -10,7 +10,8 @@ class UnusualActivity extends Model
     protected $fillable = [
         'logo',
         'project',
-        'activities'
+        'activities',
+        'share'
     ];
 
 }

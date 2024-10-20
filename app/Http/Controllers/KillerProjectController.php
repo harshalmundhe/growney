@@ -22,6 +22,7 @@ class KillerProjectController extends Controller
                     if(!empty($v['logo'])) {
                         $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
                     }
+                    $v['share'] = @json_decode($v['share'], true);
                     $data['collection'][] = $v;
                 }
                 return $this->sendSuccessResponse('KillerProject listed successfully', $data);
@@ -33,6 +34,7 @@ class KillerProjectController extends Controller
                     if(!empty($v['logo'])) {
                         $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
                     }
+                    $v['share'] = @json_decode($v['share'], true);
                     $data['collection'][] = $v;
                 }
                 $data['pagination'] = $this->getPagination($killerproject);
@@ -47,6 +49,7 @@ class KillerProjectController extends Controller
             if(!empty($killerproject['logo'])) {
                 $killerproject['logo'] = asset("/images/".self::UPLOAD_DIR."/". $killerproject['logo']);
             }
+            $killerproject['share'] = @json_decode($killerproject['share'], true);
             return $this->sendSuccessResponse('KillerProject view successfully', $killerproject);
         } catch (\Exception $e) {
             return $this->sendFailedResponse('KillerProject view failed');
@@ -66,13 +69,15 @@ class KillerProjectController extends Controller
         $killerproject = KillerProject::create([
             'logo' => $filename ?? '',
             'project' => $request->project  ?? '',
-            'activities' => $request->activity  ?? ''
+            'activities' => $request->activity  ?? '',
+            'share' => json_encode($request->share ?? [])
         ]);
 
         if(!empty($killerproject)) {
             if(!empty($killerproject['logo'])) {
                 $killerproject['logo'] = asset("/images/".self::UPLOAD_DIR."/". $killerproject['logo']);
             }
+            $killerproject['share'] = @json_decode($killerproject['share'], true);
             return $this->sendSuccessResponse('KillerProject created successfully', ['killerproject' => $killerproject]);
         }
         return $this->sendFailedResponse('KillerProject creation failed');
@@ -88,7 +93,8 @@ class KillerProjectController extends Controller
 
         $updates = [
             'project' => $request->project  ?? '',
-            'activities' => $request->activity  ?? ''
+            'activities' => $request->activity  ?? '',
+            'share' => json_encode($request->share ?? [])
         ];
         if($request->has('logo')) {
             $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
@@ -104,6 +110,7 @@ class KillerProjectController extends Controller
             if(!empty($killerproject['logo'])) {
                 $killerproject['logo'] = asset("/images/".self::UPLOAD_DIR."/". $killerproject['logo']);
             }
+            $killerproject['share'] = @json_decode($killerproject['share'], true);
             return $this->sendSuccessResponse('KillerProject updated successfully', ['killerproject' => $killerproject]);
         }
         return $this->sendFailedResponse('KillerProject updation failed');

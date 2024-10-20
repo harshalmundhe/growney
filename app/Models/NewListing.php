@@ -14,7 +14,8 @@ class NewListing extends Model
         'investors',
         'category',
         'network',
-        'max_supply'
+        'max_supply',
+        'share'
     ];
 
 }

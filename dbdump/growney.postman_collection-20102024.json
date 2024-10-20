@@ -1,0 +1,2112 @@
+{
+	"info": {
+		"_postman_id": "50387cc8-7018-4d0c-b679-df0a7309ef28",
+		"name": "growney",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"test8 test\",\r\n    \"email\":\"test8@test1.com\",\r\n    \"password\":\"123456\",\r\n    \"reffer_code\":\"ABCD\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"test6@test.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"test7@test.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/forgot-pass",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"forgot-pass"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"123456\",\r\n    \"token\":\"dGVzdDdAdGVzdC5jb21fMjAyNC0wNS0yNCAxNTo1MjozMQ==\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/reset-pass",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reset-pass"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/user-profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user-profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Unusual Activity",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/unusual-activity/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"unusual-activity",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "p3",
+									"type": "text"
+								},
+								{
+									"key": "activity",
+									"value": "some activivty 3",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/unusual-activity/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"unusual-activity",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "p1",
+									"type": "text"
+								},
+								{
+									"key": "activity",
+									"value": "some activivty 1",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/unusual-activity",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"unusual-activity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/unusual-activity",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"unusual-activity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/unusual-activity/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"unusual-activity",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Eco System",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/eco-system/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"eco-system",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "p3",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "name2",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/eco-system/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"eco-system",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "p1",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "some name",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/eco-system",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"eco-system"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/eco-system",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"eco-system"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/eco-system/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"eco-system",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Killer Projects",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/killer-project/8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"killer-project",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "p2",
+									"type": "text"
+								},
+								{
+									"key": "activity",
+									"value": "some activivty 3",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/killer-project/8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"killer-project",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "p1",
+									"type": "text"
+								},
+								{
+									"key": "activity",
+									"value": "some activivty 1",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/killer-project",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"killer-project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/killer-project",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"killer-project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/killer-project/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"killer-project",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Air Drop",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/air-drop/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"air-drop",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "heading",
+									"value": "p2",
+									"type": "text"
+								},
+								{
+									"key": "sub_heading",
+									"value": "some activivty 3",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/air-drop/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"air-drop",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "heading",
+									"value": "p1",
+									"type": "text"
+								},
+								{
+									"key": "sub_heading",
+									"value": "some activivty 1",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/air-drop",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"air-drop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/air-drop",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"air-drop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/air-drop/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"air-drop",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wishlist",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/wishlist/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wishlist",
+								"2"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{auth}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "item_id",
+									"value": "3",
+									"type": "default"
+								},
+								{
+									"key": "table_name",
+									"value": "funding_round",
+									"type": "default"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "default",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/wishlist",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wishlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/wishlist",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wishlist"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hot News",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/hot-news/8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"hot-news",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "heading",
+									"value": "p2",
+									"type": "text"
+								},
+								{
+									"key": "sub_heading",
+									"value": "some activivty 3",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/hot-news/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"hot-news",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "heading",
+									"value": "p1",
+									"type": "text"
+								},
+								{
+									"key": "sub_heading",
+									"value": "some activivty 1",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/hot-news",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"hot-news"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/hot-news",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"hot-news"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/hot-news/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"hot-news",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Listing",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/new-listing/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-listing",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "name1",
+									"type": "text"
+								},
+								{
+									"key": "created_on",
+									"value": "2024-06-02",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "category",
+									"type": "text"
+								},
+								{
+									"key": "network",
+									"value": "network",
+									"type": "text"
+								},
+								{
+									"key": "max_supply",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								},
+								{
+									"key": "investors[]",
+									"type": "file",
+									"src": [
+										"/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463461_social_chrome_media_network.png",
+										"/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463462_dribbblr_media_network_social.png",
+										"/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463464_social_media_explorer_network.png"
+									]
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/new-listing/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-listing",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "name",
+									"type": "text"
+								},
+								{
+									"key": "created_on",
+									"value": "2024-06-02",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "category",
+									"type": "text"
+								},
+								{
+									"key": "network",
+									"value": "network",
+									"type": "text"
+								},
+								{
+									"key": "max_supply",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								},
+								{
+									"key": "investors[]",
+									"type": "file",
+									"src": [
+										"/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463458_social_application_media_network.png",
+										"/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463459_media_social_arrow_network.png",
+										"/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463460_behance_social_network_media.png"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/new-listing",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-listing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/new-listing?nolimit=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-listing"
+							],
+							"query": [
+								{
+									"key": "nolimit",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/new-listing/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-listing",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Project",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/new-project/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-project",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "name1",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "category",
+									"type": "text"
+								},
+								{
+									"key": "total_raise",
+									"value": "total_raise",
+									"type": "text"
+								},
+								{
+									"key": "round",
+									"value": "round",
+									"type": "text"
+								},
+								{
+									"key": "investors",
+									"value": "investors",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/new-project/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-project",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "name",
+									"type": "text"
+								},
+								{
+									"key": "total_raise",
+									"value": "1000",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "category",
+									"type": "text"
+								},
+								{
+									"key": "round",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "investors",
+									"value": "test1,test2",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/new-project",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/new-project",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/new-project/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new-project",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IDO IEO",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/ido-ieo/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ido-ieo",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "name1",
+									"type": "text"
+								},
+								{
+									"key": "backed_by",
+									"value": "category",
+									"type": "text"
+								},
+								{
+									"key": "partners",
+									"value": "total_raise",
+									"type": "text"
+								},
+								{
+									"key": "coin_token_sale_partner",
+									"value": "round",
+									"type": "text"
+								},
+								{
+									"key": "audits",
+									"value": "investors",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/ido-ieo/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ido-ieo",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "name",
+									"type": "text"
+								},
+								{
+									"key": "backed_by",
+									"value": "1000",
+									"type": "text"
+								},
+								{
+									"key": "partners",
+									"value": "category",
+									"type": "text"
+								},
+								{
+									"key": "coin_token_sale_partner",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "audits",
+									"value": "test1,test2",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/ido-ieo",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ido-ieo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/ido-ieo",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ido-ieo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/ido-ieo/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ido-ieo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Funding Round",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/funding-round/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"funding-round",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "name1",
+									"type": "text"
+								},
+								{
+									"key": "created_on",
+									"value": "2024-02-22",
+									"type": "text"
+								},
+								{
+									"key": "rounds",
+									"value": "11",
+									"type": "text"
+								},
+								{
+									"key": "partners",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "investors",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "raised",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463457_social_media_apple_network.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/funding-round/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"funding-round",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project",
+									"value": "name",
+									"type": "text"
+								},
+								{
+									"key": "created_on",
+									"value": "2024-06-04",
+									"type": "text"
+								},
+								{
+									"key": "rounds",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "partners",
+									"value": "partner1",
+									"type": "text"
+								},
+								{
+									"key": "investors",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "raised",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "share[telegram]",
+									"value": "telegram.com",
+									"type": "text"
+								},
+								{
+									"key": "share[website]",
+									"value": "website.com",
+									"type": "text"
+								},
+								{
+									"key": "share[twitter]",
+									"value": "twitter.com",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Harshal.Mundhe/Downloads/archive/icons/3463456_media_social_network_android.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/funding-round",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"funding-round"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/funding-round",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"funding-round"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/funding-round/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"funding-round",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://127.0.0.1:8000",
+			"type": "default"
+		},
+		{
+			"value": "",
+			"type": "default"
+		}
+	]
+}

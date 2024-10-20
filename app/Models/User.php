@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Support\Str;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
@@ -20,7 +21,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email','password',
+        'name', 'email','password','reffer_code','reffered_by','credits'
     ];
 
     /**
@@ -50,5 +51,17 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public static function generateRefferCode() {
+
+        while(true) {
+            $random = Str::random(5);
+            $exists = self::where('reffer_code', $random)->exists();
+            if(!$exists) {
+                return $random;
+                break;
+            }
+        }
     }
 }

@@ -22,6 +22,7 @@ class NewProjectController extends Controller
                     if(!empty($v['logo'])) {
                         $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
                     }
+                    $v['share'] = @json_decode($v['share'], true);
                     $data['collection'][] = $v;
                 }
                 return $this->sendSuccessResponse('Project listed successfully', $data);
@@ -33,6 +34,7 @@ class NewProjectController extends Controller
                     if(!empty($v['logo'])) {
                         $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
                     }
+                    $v['share'] = @json_decode($v['share'], true);
                     $data['collection'][] = $v;
                 }
                 $data['pagination'] = $this->getPagination($activity);
@@ -49,6 +51,7 @@ class NewProjectController extends Controller
             if(!empty($activity['logo'])) {
                 $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
             }
+            $activity['share'] = @json_decode($activity['share'], true);
             return $this->sendSuccessResponse('Project view successfully', $activity);
         } catch (\Exception $e) {
             return $this->sendFailedResponse('Project view failed');
@@ -72,12 +75,14 @@ class NewProjectController extends Controller
             'total_raise' => $request->total_raise  ?? '',
             'round' => $request->round  ?? '',
             'investors' => $request->investors  ?? '',
+            'share' => json_encode($request->share ?? [])
         ]);
 
         if(!empty($activity)) {
             if(!empty($activity['logo'])) {
                 $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
             }
+            $activity['share'] = @json_decode($activity['share'], true);
             return $this->sendSuccessResponse('Project created successfully', ['activity' => $activity]);
         }
         return $this->sendFailedResponse('Project creation failed');
@@ -97,6 +102,7 @@ class NewProjectController extends Controller
             'total_raise' => $request->total_raise ?? '',
             'round' => $request->round ?? '',
             'investors' => $request->investors ?? '',
+            'share' => json_encode($request->share ?? [])
         ];
         if($request->has('logo')) {
             $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
@@ -112,6 +118,7 @@ class NewProjectController extends Controller
             if(!empty($activity['logo'])) {
                 $activity['logo'] = asset("/images/".self::UPLOAD_DIR."/". $activity['logo']);
             }
+            $activity['share'] = @json_decode($activity['share'], true);
             return $this->sendSuccessResponse('Project updated successfully', ['activity' => $activity]);
         }
         return $this->sendFailedResponse('Project updation failed');

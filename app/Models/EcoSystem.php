@@ -10,7 +10,8 @@ class EcoSystem extends Model
     protected $fillable = [
         'logo',
         'project',
-        'name'
+        'name',
+        'share'
     ];
 
 }

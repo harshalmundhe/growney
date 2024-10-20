@@ -23,6 +23,7 @@ class FundingRoundController extends Controller
                     if(!empty($v['logo'])) {
                         $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
                     }
+                    $v['share'] = @json_decode($v['share'], true);
                     $data['collection'][] = $v;
                 }
                 return $this->sendSuccessResponse('FundingRound listed successfully', $data);
@@ -34,8 +35,10 @@ class FundingRoundController extends Controller
                     if(!empty($v['logo'])) {
                         $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
                     }
+                    $v['share'] = @json_decode($v['share'], true);
                     $data['collection'][] = $v;
                 }
+                
                 $data['pagination'] = $this->getPagination($fundinground);
                 return $this->sendSuccessResponse('FundingRound listed successfully', $data);
             }
@@ -49,6 +52,7 @@ class FundingRoundController extends Controller
             if(!empty($fundinground['logo'])) {
                 $fundinground['logo'] = asset("/images/".self::UPLOAD_DIR."/". $fundinground['logo']);
             }
+            $fundinground['share'] = @json_decode($fundinground['share'], true);
             return $this->sendSuccessResponse('FundingRound view successfully', $fundinground);
         } catch (\Exception $e) {
             return $this->sendFailedResponse('FundingRound view failed');
@@ -76,12 +80,14 @@ class FundingRoundController extends Controller
             'investors' => $request->investors ?? '',
             'raised' => $request->raised ?? '',
             'category' => $request->category ?? '',
+            'share' => json_encode($request->share ?? [])
         ]);
 
         if(!empty($fundinground)) {
             if(!empty($fundinground['logo'])) {
                 $fundinground['logo'] = asset("/images/".self::UPLOAD_DIR."/". $fundinground['logo']);
             }
+            $fundinground['share'] = @json_decode($fundinground['share'], true);
             return $this->sendSuccessResponse('FundingRound created successfully', ['fundinground' => $fundinground]);
         }
         return $this->sendFailedResponse('FundingRound creation failed');
@@ -103,6 +109,7 @@ class FundingRoundController extends Controller
             'investors' => $request->investors ?? '',
             'raised' => $request->raised ?? '',
             'category' => $request->category ?? '',
+            'share' => json_encode($request->share ?? [])
         ];
         if($request->has('logo')) {
             $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
@@ -118,6 +125,7 @@ class FundingRoundController extends Controller
             if(!empty($fundinground['logo'])) {
                 $fundinground['logo'] = asset("/images/".self::UPLOAD_DIR."/". $fundinground['logo']);
             }
+            $fundinground['share'] = @json_decode($fundinground['share'], true);
             
             return $this->sendSuccessResponse('FundingRound updated successfully', ['fundinground' => $fundinground]);
         }

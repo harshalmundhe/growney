@@ -16,6 +16,7 @@ class FundingRound extends Model
         'investors',
         'raised',
         'category',
+        'share'
     ];
 
 }

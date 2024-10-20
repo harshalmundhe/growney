@@ -24,6 +24,7 @@ class NewListingController extends Controller
                     if(!empty($v['logo'])) {
                         $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
                     }
+                    $v['share'] = @json_decode($v['share'], true);
                     $investors = @json_decode($v['investors'], true);
                     if(!empty($investors)) {
                         foreach($investors as $investor) {
@@ -44,6 +45,7 @@ class NewListingController extends Controller
                     if(!empty($v['logo'])) {
                         $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
                     }
+                    $v['share'] = @json_decode($v['share'], true);
                     $investors = @json_decode($v['investors'], true);
                     if(!empty($investors)) {
                         foreach($investors as $investor) {
@@ -66,6 +68,7 @@ class NewListingController extends Controller
             if(!empty($listing['logo'])) {
                 $listing['logo'] = asset("/images/".self::UPLOAD_DIR."/". $listing['logo']);
             }
+            $listing['share'] = @json_decode($listing['share'], true);
             $investors = @json_decode($listing['investors'], true);
             $investorPath = [];
             if(!empty($investors)) {
@@ -106,7 +109,8 @@ class NewListingController extends Controller
             'investors' => json_encode($investors),
             'category' => $request->category  ?? '',
             'network' => $request->network  ?? '',
-            'max_supply' => $request->max_supply ?? ''
+            'max_supply' => $request->max_supply ?? '',
+            'share' => json_encode($request->share ?? [])
         ]);
 
         if(!empty($listing)) {
@@ -114,6 +118,7 @@ class NewListingController extends Controller
             if(!empty($listing['logo'])) {
                 $listing['logo'] = asset("/images/".self::UPLOAD_DIR."/". $listing['logo']);
             }
+            $listing['share'] = @json_decode($listing['share'], true);
             $investors = @json_decode($listing['investors'], true);
             if(!empty($investors)) {
                 foreach($investors as $investor) {
@@ -139,7 +144,8 @@ class NewListingController extends Controller
             'name' => $request->name  ?? '',
             'category' => $request->category  ?? '',
             'network' => $request->network  ?? '',
-            'max_supply' => $request->max_supply ?? ''
+            'max_supply' => $request->max_supply ?? '',
+            'share' => json_encode($request->share ?? [])
         ];
         if($request->has('logo')) {
             $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
@@ -162,6 +168,7 @@ class NewListingController extends Controller
             if(!empty($listing['logo'])) {
                 $listing['logo'] = asset("/images/".self::UPLOAD_DIR."/". $listing['logo']);
             }
+            $listing['share'] = @json_decode($listing['share'], true);
             $investors = @json_decode($listing['investors'], true);
             if(!empty($investors)) {
                 foreach($investors as $investor) {

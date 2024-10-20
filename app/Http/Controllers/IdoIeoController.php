@@ -23,6 +23,7 @@ class IdoIeoController extends Controller
                     if(!empty($v['logo'])) {
                         $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
                     }
+                    $v['share'] = @json_decode($v['share'], true);
                     $data['collection'][] = $v;
                 }
                 return $this->sendSuccessResponse('IdoIeo listed successfully', $data);
@@ -34,6 +35,7 @@ class IdoIeoController extends Controller
                     if(!empty($v['logo'])) {
                         $v['logo'] = asset("/images/".self::UPLOAD_DIR."/". $v['logo']);
                     }
+                    $v['share'] = @json_decode($v['share'], true);
                     $data['collection'][] = $v;
                 }
                 $data['pagination'] = $this->getPagination($ideieo);
@@ -49,6 +51,7 @@ class IdoIeoController extends Controller
             if(!empty($ideieo['logo'])) {
                 $ideieo['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ideieo['logo']);
             }
+            $ideieo['share'] = @json_decode($ideieo['share'], true);
             return $this->sendSuccessResponse('IdoIeo view successfully', $ideieo);
         } catch (\Exception $e) {
             return $this->sendFailedResponse('IdoIeo view failed');
@@ -74,12 +77,14 @@ class IdoIeoController extends Controller
             'partners' => $request->partners  ?? '',
             'coin_token_sale_partner' => $request->coin_token_sale_partner  ?? '',
             'audits' => $request->audits  ?? '',
+            'share' => json_encode($request->share ?? [])
         ]);
 
         if(!empty($ideieo)) {
             if(!empty($ideieo['logo'])) {
                 $ideieo['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ideieo['logo']);
             }
+            $ideieo['share'] = @json_decode($ideieo['share'], true);
             return $this->sendSuccessResponse('IdoIeo created successfully', ['ideieo' => $ideieo]);
         }
         return $this->sendFailedResponse('IdoIeo creation failed');
@@ -99,6 +104,7 @@ class IdoIeoController extends Controller
             'partners' => $request->partners ?? '',
             'coin_token_sale_partner' => $request->coin_token_sale_partner ?? '',
             'audits' => $request->audits ?? '',
+            'share' => json_encode($request->share ?? [])
         ];
         if($request->has('logo')) {
             $filename = $this->moveFileToStorage($request->file('logo'), self::UPLOAD_DIR);
@@ -114,6 +120,7 @@ class IdoIeoController extends Controller
             if(!empty($ideieo['logo'])) {
                 $ideieo['logo'] = asset("/images/".self::UPLOAD_DIR."/". $ideieo['logo']);
             }
+            $ideieo['share'] = @json_decode($ideieo['share'], true);
             
             return $this->sendSuccessResponse('IdoIeo updated successfully', ['ideieo' => $ideieo]);
         }

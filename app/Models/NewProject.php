@@ -14,6 +14,7 @@ class NewProject extends Model
         'total_raise',
         'round',
         'investors',
+        'share'
     ];
 
 }
